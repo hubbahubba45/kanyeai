@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$YEAI</title>
+    <link rel="icon" type="image/png" href="static/ye.png">
+    <style>
+        @font-face {
+            font-family: 'Wimzik';
+            src: url('static/Wimzik.otf') format('opentype');
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('static/ye.png') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            font-family: 'Wimzik', sans-serif;
+            color: white;
+        }
+        .mic-drop {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, #ffcc00, #ff6600);
+            border: none;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+        .mic-drop:hover {
+            box-shadow: 0 0 40px rgba(255, 102, 0, 1);
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <button class="mic-drop" onclick="fetchJoke()">Mic Drop</button>
+    <div id="output"></div>
+
+    <script>
+        function fetchJoke() {
+            fetch('/random_joke')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output').innerText = data.joke || 'No response';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('output').innerText = 'Error fetching response';
+                });
+        }
+    </script>
+</body>
+</html>
