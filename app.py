@@ -14,7 +14,7 @@ def home():
 @app.route('/random_joke', methods=['GET'])
 def random_joke():
     try:
-        prompt = "tell my memecoin future in trumps voice in one line"
+        prompt = "say something kanye would say in one line"
         completion = client.chat.completions.create(
             model="llama3-8b-8192",
             messages=[{"role": "user", "content": prompt}],
